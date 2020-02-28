@@ -14,7 +14,6 @@ const ProfileButtonWithStyle = styled.button`
     color: ${props => props.fontColor};
     line-height: ${tokens.button.fontSize.profile};
     font-size: ${tokens.button.fontSize.profile};
-    ${props => { props.onClick ? "&:hover {cursor: pointer;}" : "" }}
 `;
 
 export default ProfileButtonWithStyle;
