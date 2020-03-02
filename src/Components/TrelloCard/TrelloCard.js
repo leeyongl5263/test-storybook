@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
 import { ProgressBar } from "../ProgressBar";
 import { Title } from "../Title";
 import { Container } from "../Container";
-import { Tag } from "../Tag";
+import { Tag, IconTag } from "../Tag";
 import ContainerWithStyle from "./TrelloCard.styles";
-import { Button } from "../Button";
+import { Button, ProfileButton } from "../Button";
 import { Dot } from "../Dot";
 import { Icon } from "../Icon";
+import styled from "styled-components";
 // import DropDownMenu from "@ensightful/dropdownmenu";
 
 const propTypes = {
@@ -24,7 +25,8 @@ const propTypes = {
 
 const defaultProps = {
   isFinished: false,
-  profileUrl:"https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-snapchat-2019-square1-512.png",
+  profileUrl:
+    "https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-snapchat-2019-square1-512.png",
   title: "Brainstorming",
   denominator: "1/5",
   date: "Oct,12",
@@ -33,6 +35,32 @@ const defaultProps = {
   tag: "medium"
 };
 
+const TitleContainerDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+`;
+
+const TagContainerDiv = styled.div`
+  margin-top: 10px;
+  margin-left: 260px;
+`;
+
+const ProgressBarContainerDiv = styled.div`
+  width: 179.69px;
+  margin-top: 20px;
+  margin-left: 10px;
+`;
+
+const IconContainerDiv = styled.div`
+  margin-top: 20px;
+  margin-left: -10px;
+`;
+
+const ProfileButtonContainerDiv = styled.div`
+  margin-left: 325px;
+  margin-top: -40px;
+`;
 
 
 function TrelloCard(props) {
@@ -45,46 +73,39 @@ function TrelloCard(props) {
           borderTopColor="#4DD87A"
           height="85px"
         >
-          <div style={{ display: "flex", justifyContent: "space-between", marginLeft:"20px"}}>
+          <TitleContainerDiv>
             <Title level={2} isCrossOut={true}>
-            {props.title}
+              {props.title}
             </Title>
-            <div style={{ marginRight: "10px"}}>
-            {props.dropDown}
-            </div>
-          </div>
+            <div style={{ marginRight: "10px" }}>{props.dropDown}</div>
+          </TitleContainerDiv>
         </Container>
       </React.Fragment>
     );
   } else
     return (
-      <ContainerWithStyle height="185px" containerColor="#ffffff">
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <ContainerWithStyle height="185px" width="380px" containerColor="#ffffff">
+        <TitleContainerDiv>
           <Title level={2} titleColor="#000000" id="title">
             {props.title}
           </Title>
           <div style={{ marginRight: "10px" }}>{props.dropDown}</div>
-        </div>
-        <div style={{ marginTop: "10px", marginLeft: "280px" }}>
-          <Tag
-            id="tag"
-            tagColor="#E0DBFF"
-            fontColor="#9E35EB"
-            size="xsmall"
-          >
+        </TitleContainerDiv>
+        <TagContainerDiv>
+          <Tag id="tag" tagColor="#E0DBFF" fontColor="#9E35EB" size="xsmall">
             {props.tag}
           </Tag>
-        </div>
-        <div id="progressBar" style={{ width: "179.69px", marginTop: "20px" }}>
+        </TagContainerDiv>
+        <ProgressBarContainerDiv id="progressBar">
           <ProgressBar
             kind="fraction"
             fontColor="#CECECE"
             denominator={props.denominator.split("/")[1]}
             numerator={props.denominator.split("/")[0]}
           />
-        </div>
-        <div style={{ marginTop: "20px", marginLeft: "-20px" }}>
-          <Tag.Icon size="large" fontColor="#989898">
+        </ProgressBarContainerDiv>
+        <IconContainerDiv>
+          <IconTag size="large" fontColor="#989898">
             <Icon
               kind="notification-bell"
               color="#E4E5E5"
@@ -93,9 +114,9 @@ function TrelloCard(props) {
               style={{ marginRight: "5px" }}
             />
             {props.date}
-          </Tag.Icon>
+          </IconTag>
           |
-          <Tag.Icon size="medium" fontColor="#989898">
+          <IconTag size="medium" fontColor="#989898">
             <Icon
               kind="attachment"
               color="#E4E5E5"
@@ -104,9 +125,9 @@ function TrelloCard(props) {
               style={{ marginRight: "5px" }}
             />
             {props.filesNumber}
-          </Tag.Icon>
+          </IconTag>
           |
-          <Tag.Icon size="small" fontColor="#989898">
+          <IconTag size="small" fontColor="#989898">
             <Icon
               kind="message"
               color="#E4E5E5"
@@ -115,17 +136,19 @@ function TrelloCard(props) {
               style={{ marginRight: "5px" }}
             />
             {props.messageNumber}
-          </Tag.Icon>
-        </div>
-        <div style={{ marginLeft: "325px", marginTop: "-40px" }}>
+          </IconTag>
+        </IconContainerDiv>
+        <ProfileButtonContainerDiv
+          style={{ marginLeft: "310px", marginTop: "-40px" }}
+        >
           <Dot
             verticalDirection="bottom"
             verticalDistance={5}
             horizontalDistance={4}
           >
-            <Button.Profile imgUrl={props.profileUrl} />
+            <ProfileButton imgUrl={props.profileUrl} />
           </Dot>
-        </div>
+        </ProfileButtonContainerDiv>
       </ContainerWithStyle>
     );
 }

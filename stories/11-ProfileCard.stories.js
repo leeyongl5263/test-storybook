@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, text, color, select, number } from "@storybook/addon-knobs";
-import { ProfileCard, DropDownMenu, Icon } from '../src';
+import { ProfileCard, DropDownMenu, DropDownMenuItem, Icon } from '../src';
 
 const ProfileCardProps = () => (
     {
@@ -10,7 +10,7 @@ const ProfileCardProps = () => (
         userName: text("userName", "Victor Lang"),
         userIdentity: text("userIdentity", "@victorlang"),
         userRole: text("userRole", "Marketing Student"),
-        percentage: text("percentage", "100%"),
+        percentage: text("percentage", "80%"),
         open: number("open", 0),
         completed: number("completed", 43),
         total: number("total", 43),
@@ -24,8 +24,8 @@ storiesOf("ProfileCard", module)
         <>
             <ProfileCard {...ProfileCardProps()} menu={
                 <DropDownMenu id="ddlMenu" trigger={<Icon kind="dot" color="#E4E5E5" />} >
-                    <DropDownMenu.Item>Edit</DropDownMenu.Item>
-                    <DropDownMenu.Item>Delete</DropDownMenu.Item>
-                    <DropDownMenu.Item>Move</DropDownMenu.Item>
+                    <DropDownMenuItem>Edit</DropDownMenuItem>
+                    <DropDownMenuItem>Delete</DropDownMenuItem>
+                    <DropDownMenuItem>Move</DropDownMenuItem>
                 </DropDownMenu>} />
         </>);
